@@ -1,0 +1,19 @@
+{
+  "name": "labstats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lab9k/LabStats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lab9k/LabStats/issues"
+  },
+  "homepage": "https://github.com/lab9k/LabStats#readme"
+}
