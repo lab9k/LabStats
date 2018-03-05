@@ -1,4 +1,4 @@
-const https = require("https");
+const request = require("request");
 
 class DataService {
   constructor() {
@@ -6,26 +6,16 @@ class DataService {
   }
 
   getJSON(address, cb) {
-    let options = {
-      hostname: "https://api.github.com",
-      port: 443,
-      path: "/orgs/lab9k/repos",
-      method: "GET"
-    };
-    https
-      .get(options, resp => {
-        let data = "";
-        resp.on("data", chunk => {
-          data += chunk;
-        });
-        resp.on("end", () => {
-          console.log(JSON.parse(data));
-          cb(data);
-        });
-      })
-      .on("error", error => {
-        console.error(error);
-      });
+    request(
+      address,
+      { json: true, headers: { "User-Agent": "Lab9k" } },
+      (err, res, body) => {
+        if (err) {
+          return console.error(err);
+        }
+        cb(body);
+      }
+    );
   }
 
   fetchData() {
