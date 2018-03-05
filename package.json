@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/lab9k/LabStats/issues"
   },
-  "homepage": "https://github.com/lab9k/LabStats#readme"
+  "homepage": "https://github.com/lab9k/LabStats#readme",
+  "dependencies": {
+    "request": "^2.83.0"
+  }
 }
