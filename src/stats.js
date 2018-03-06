@@ -10,7 +10,13 @@ class DataService {
     console.log(address);
     request(
       address + `?client_id=${gh_id}&client_secret=${gh_secret}`,
-      { json: true, headers: { "User-Agent": "Lab9k" } },
+      {
+        json: true,
+        headers: {
+          "User-Agent": "Lab9k",
+          "Content-Type": "application/json"
+        }
+      },
       (err, res, body) => {
         if (err) {
           return console.error(err);
