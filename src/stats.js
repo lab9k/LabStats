@@ -1,5 +1,5 @@
 const request = require("request");
-const gh_id = process.envGH_CLIENT_ID;
+const gh_id = process.env.GH_CLIENT_ID;
 const gh_secret = process.env.GH_CLIENT_SECRET;
 class DataService {
   constructor() {
