@@ -27,10 +27,11 @@ class DataService {
     );
   }
 
-  compareDates(date, maxDaysAgo) {
+  compareDates(date, maxDaysAgo, parse) {
     //console.log(date);
-
-    date = Date.parse(date);
+    if (parse) {
+      date = Date.parse(date);
+    }
 
     let currentDate = new Date().getTime() - maxDaysAgo * 24 * 60 * 60 * 1000;
     //return false;
@@ -41,7 +42,7 @@ class DataService {
     this.getJSON(this.reposUrl, data => {
       //Overloop de array, neem de actieve repos (laatste activiteit max 1 week geleden)
       data = data.filter(data => {
-        return this.compareDates(data["pushed_at"], 7);
+        return this.compareDates(data["pushed_at"], 7, true);
       });
       //TODO: Overloop elke actieve repo om de contributorsinfo op te lijsten
       data.forEach(e => {
@@ -63,7 +64,13 @@ class DataService {
             );
 
             weken = weken.filter(data => {
-              return this.compareDates(data["w"], 35);
+              let date = data["w"];
+              let currentDate = new Date().getTime() - 35 * 24 * 60 * 60 * 1000;
+              let result = this.compareDates(data["w"], 35, false);
+              console.log(
+                `Date: ${date} , currentDate: ${currentDate} , result: ${result}`
+              );
+              return this.compareDates(data["w"], 35, false);
             });
 
             console.log(
