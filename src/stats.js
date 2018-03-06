@@ -8,25 +8,31 @@ class DataService {
     this.reposUrl = "https://api.github.com/orgs/lab9k/repos";
   }
 
-  getJSON(address, cb) {
+  getJSON(address) {
+
     address = address + `?client_id=${gh_id}&client_secret=${gh_secret}`;
     console.log(`Fetching: ${address}`);
-    request(
-      address,
-      {
-        json: true,
-        headers: {
-          "User-Agent": "Lab9k",
-          "Content-Type": "application/json"
+
+    return new Promise(function(resolve, reject) {
+
+      request(
+        address,
+        {
+          json: true,
+          headers: {
+            "User-Agent": "Lab9k",
+            "Content-Type": "application/json"
+          }
+        },
+        (err, res, body) => {
+          if (err) {
+            return reject(err);
+          } else {
+            resolve(body);
+          }
         }
-      },
-      (err, res, body) => {
-        if (err) {
-          return console.error(err);
-        }
-        cb(body);
-      }
-    );
+      );
+    })
   }
 
   compareDates(date, maxDaysAgo, parse) {
@@ -42,7 +48,7 @@ class DataService {
 
   fetchData() {
 
-    this.getJSON(this.reposUrl, data => {
+    this.getJSON(this.reposUrl).then(data => {
       //Overloop de array, neem de actieve repos (laatste activiteit max 1 week geleden)
       data = data.filter(data => {
         return this.compareDates(data["pushed_at"], 7, true);
@@ -82,11 +88,14 @@ class DataService {
             return w["total"] >= 1;
           })
 
+          nietLegeWeken.forEach(e => {
+            console.log(e);
+          })
           
         })        
 
       });      
-    })
+    }).catch(console.log);   
   }
 }
 
