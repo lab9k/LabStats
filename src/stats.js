@@ -50,10 +50,9 @@ class DataService {
         }/stats/contributors`;
 
         this.getJSON(contsPerRepoAddress, data => {
-          /*data.forEach(e => {
-                   console.log(e);
-                 })*/
-          //console.log(JSON.parse(JSON.stringify(data)));
+          data.forEach(d => {
+            console.log(d.weeks);
+          });
         });
       });
     });
