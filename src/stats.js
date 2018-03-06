@@ -53,8 +53,12 @@ class DataService {
         //TODO: overloop voor elke contributor zijn activiteit van de laatste 5 weken
         this.getJSON(contsPerRepoAddress, data => {
           data.forEach(d => {
+<<<<<<< HEAD
             let weken = d.weeks;
             let author = d.author.login;
+=======
+            let authorName = d.author.login;
+>>>>>>> cce7f3d88d84c5468bc47f57908f7d19330f475c
 
             weken = weken.filter(data => {
               return data["c"] >= 1;
