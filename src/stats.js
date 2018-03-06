@@ -1,7 +1,9 @@
 const request = require("request");
 const gh_id = process.env.GH_CLIENT_ID;
 const gh_secret = process.env.GH_CLIENT_SECRET;
+
 class DataService {
+
   constructor() {
     this.reposUrl = "https://api.github.com/orgs/lab9k/repos";
   }
@@ -39,12 +41,13 @@ class DataService {
   }
 
   fetchData() {
+
     this.getJSON(this.reposUrl, data => {
       //Overloop de array, neem de actieve repos (laatste activiteit max 1 week geleden)
       data = data.filter(data => {
         return this.compareDates(data["pushed_at"], 7, true);
       });
-      //TODO: Overloop elke actieve repo om de contributorsinfo op te lijsten
+      //Overloop elke actieve repo om de contributorsinfo op te lijsten
       data.forEach(e => {
         let contsPerRepoAddress = `https://api.github.com/repos/lab9k/${
           e.name
@@ -52,45 +55,35 @@ class DataService {
 
         //TODO: overloop voor elke contributor zijn activiteit van de laatste 5 weken
         this.getJSON(contsPerRepoAddress, data => {
-          data.forEach(d => {
+          data.forEach(c => {
 
-            let authorName = d.author.login;
+            let authorName = c.author.login;
 
-            let weken = d.weeks.filter(data => {
+            let weken = c.weeks.filter(data => {
               return data["c"] >= 1;
             });
             
-            weken = weken.filter(data => {
-                            
+            weken = weken.filter(data => {                            
               return this.compareDates(data["w"] * 1000, 35, false);
-            });
-
-            console.log(
-              `${author} commits: NIEUWE WEKEN voor ${e.name}:` + weken.length
-            );
+            });            
           });
         });
       });
 
-      console.log("========================================================================================")
-
-      //TODO: geef commit activity van de betreffende weken van het voorbije jaar 
+      //Geef commit activity van de niet-lege weken van het voorbije jaar 
       data.forEach(e => {
-        let commitActivity = `https://api.github.com/repos/lab9k/${
+        let commitActivityPerRepo = `https://api.github.com/repos/lab9k/${
           e.name
         }/stats/commit_activity`;
 
-
-        this.getJSON(commitActivity, data => {
-
-          console.log("========================================================================================")
-          console.log(e.name)
-          console.log("========================================================================================")
-
-          data.forEach(ca => {
-            console.log(ca);
+        this.getJSON(commitActivityPerRepo, data => {
+          
+          let nietLegeWeken = data.filter(w => {
+            return w["total"] >= 1;
           })
-        })
+
+          
+        })        
 
       });      
     })
