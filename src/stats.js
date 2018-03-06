@@ -27,14 +27,12 @@ class DataService {
     );
   }
 
-  checkRepoActivity(repo) {
-    let date = repo["pushed_at"];
-
+  checkRepoActivity(date, maxDaysAgo) {
     //console.log(date);
 
     date = Date.parse(date);
 
-    let currentDate = new Date().getTime() - 7 * 24 * 60 * 60 * 1000;
+    let currentDate = new Date().getTime() - maxDaysAgo * 24 * 60 * 60 * 1000;
     //return false;
     return currentDate < date;
   }
@@ -42,7 +40,9 @@ class DataService {
   fetchData() {
     this.getJSON(this.reposUrl, data => {
       //Overloop de array, neem de actieve repos (laatste activiteit max 1 week geleden)
-      data = data.filter(this.checkRepoActivity);
+      data = data.filter(data => {
+        return this.checkRepoActivity(data["pushed_at"], 7);
+      });
       //TODO: Overloop elke actieve repo om de contributorsinfo op te lijsten
       data.forEach(e => {
         let contsPerRepoAddress = `https://api.github.com/repos/lab9k/${
