@@ -27,10 +27,11 @@ class DataService {
     );
   }
 
-  compareDates(date, maxDaysAgo) {
+  compareDates(date, maxDaysAgo, parse) {
     //console.log(date);
-
-    date = Date.parse(date);
+    if (parse) {
+      date = Date.parse(date);
+    }
 
     let currentDate = new Date().getTime() - maxDaysAgo * 24 * 60 * 60 * 1000;
     //return false;
@@ -41,7 +42,7 @@ class DataService {
     this.getJSON(this.reposUrl, data => {
       //Overloop de array, neem de actieve repos (laatste activiteit max 1 week geleden)
       data = data.filter(data => {
-        return this.compareDates(data["pushed_at"], 7);
+        return this.compareDates(data["pushed_at"], 7, true);
       });
       //TODO: Overloop elke actieve repo om de contributorsinfo op te lijsten
       data.forEach(e => {
@@ -52,19 +53,14 @@ class DataService {
         //TODO: overloop voor elke contributor zijn activiteit van de laatste 5 weken
         this.getJSON(contsPerRepoAddress, data => {
           data.forEach(d => {
-            let weken = d.weeks;
             let author = d.author.login;
 
-            console.log(
-              `${author} commits: OUDE WEKEN voor ${e.name}:` + weken.length
-            );
-            weken = weken.filter(data => {
-              return this.compareDates(data["w"], 35);
+            let weeksWhereCommitsHappened = d.weeks.filter(data => {
+              return data["c"] >= 1;
             });
-
-            console.log(
-              `${author} commits: NIEUWE WEKEN voor ${e.name}:` + weken.length
-            );
+            let weken = weeksWhereCommitsHappened.filter(data => {
+              return this.compareDates(data["w"] * 1000, 35, false);
+            });
           });
         });
       });
