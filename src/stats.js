@@ -79,7 +79,24 @@ class DataService {
           });
         });
       });
-    });
+
+      console.log("========================================================================================")
+
+      //TODO: geef commit activity van de betreffende weken van het voorbije jaar 
+      data.forEach(e => {
+        let commitActivity = `https://api.github.com/repos/lab9k/${
+          e.name
+        }/stats/commit_activity`;
+
+
+        this.getJSON(commitActivity, data => {
+          data.forEach(ca => {
+            console.log(ca);
+          })
+        })
+
+      });      
+    })
   }
 }
 
