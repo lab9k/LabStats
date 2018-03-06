@@ -2,8 +2,40 @@ const request = require("request");
 const gh_id = process.env.GH_CLIENT_ID;
 const gh_secret = process.env.GH_CLIENT_SECRET;
 class DataService {
+  /**
+   * Creates an instance of DataService.
+   * To be able to access the active repositories,
+   * you should call .build() right after contructing this object.
+   * The build method will return a Promise will store the active repositories when the method finishes.
+   * @memberof DataService
+   */
   constructor() {
-    this.reposUrl = "https://api.github.com/orgs/lab9k/repos";
+    this.activeRepos = [];
+  }
+
+  /**
+   *
+   *
+   * @returns Promise
+   * @memberof DataService
+   */
+  build() {
+    let reposUrl = "https://api.github.com/orgs/lab9k/repos";
+    return new Promise((resolve, reject) => {
+      try {
+        this.getJSON(reposUrl, data => {
+          data = data.filter(data => {
+            return this.compareDates(data["pushed_at"], 7, true);
+          });
+          data.forEach(repo => {
+            this.activeRepos.push(repo);
+          });
+          resolve(data);
+        });
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 
   getJSON(address, cb) {

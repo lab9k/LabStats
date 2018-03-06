@@ -10,6 +10,11 @@ if (result.error) {
   throw result.error;
 }
 
-const DataService = require("./src/stats");
-let ds = new DataService();
-ds.fetchData();
+const Generator = require("./src/generator");
+let g = new Generator();
+g
+  .build()
+  .then(() => {
+    console.log("Repositories are now accessible, generator can proceed.");
+  })
+  .catch(console.log);

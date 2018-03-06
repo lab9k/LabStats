@@ -1,5 +1,12 @@
+const DataService = require("./stats");
 class BlogPostGenerator {
-  constructor() {}
+  constructor() {
+    this.dataService = new DataService();
+  }
+
+  build() {
+    return this.dataService.build();
+  }
 }
 
 module.exports = BlogPostGenerator;
