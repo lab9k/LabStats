@@ -81,8 +81,9 @@ class DataService {
           let nietLegeWeken = data.filter(w => {
             return w["total"] >= 1;
           })
+          nietLegeWeken.forEach(e => { console.log(e) });
+            
 
-          
         })        
 
       });      
