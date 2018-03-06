@@ -45,7 +45,7 @@ class DataService {
           /*data.forEach(e => {
                    console.log(e);
                  })*/
-          console.log(JSON.parse(JSON.stringify(data)));
+          //console.log(JSON.parse(JSON.stringify(data)));
         });
       });
     });

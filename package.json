@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "source .env && node index.js"
+    "test": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lab9k/LabStats#readme",
   "dependencies": {
+    "dotenv": "^5.0.1",
     "request": "^2.83.0"
   }
 }
