@@ -40,12 +40,9 @@ class DataService {
   }
 
   getJSON(address) {
-
     address = address + `?client_id=${gh_id}&client_secret=${gh_secret}`;
     console.log(`Fetching: ${address}`);
-
     return new Promise(function(resolve, reject) {
-
       request(
         address,
         {
@@ -63,7 +60,7 @@ class DataService {
           }
         }
       );
-    })
+    });
   }
 
   compareDates(date, maxDaysAgo, parse) {
@@ -77,93 +74,53 @@ class DataService {
     return currentDate < date;
   }
 
-  getContributorsActivity(repoName){
+  getContributorsActivity(repoName) {
+    let contsPerRepoAddress = `https://api.github.com/repos/lab9k/${repoName}/stats/contributors`;
 
-     let contsPerRepoAddress = `https://api.github.com/repos/lab9k/${
-        repoName
-      }/stats/contributors`;    
+    /*Overloop voor elke contributor zijn activiteit van de laatste 5 weken*/
 
-      /*Overloop voor elke contributor zijn activiteit van de laatste 5 weken*/
-
-      this.getJSON(contsPerRepoAddress).then(data => {
-
+    this.getJSON(contsPerRepoAddress)
+      .then(data => {
         let res = [];
         data.forEach(c => {
-          let authorName = c.author.login;
-
           let weken = c.weeks.filter(data => {
             return data["c"] >= 1;
           });
-
           weken = weken.filter(data => {
             return this.compareDates(data["w"] * 1000, 35, false);
           });
-
           c.weeks = weken;
           res.push(c);
         });
         return res;
-
-      }).catch(console.log);   
+      })
+      .catch(console.log);
   }
 
-
-  getCommitActivity(){
-
+  /**
+   *
+   *
+   * @memberof DataService
+   */
+  getCommitActivity(name) {
+    let url = `https://api.github.com/repos/lab9k/${name}/stats/commit_activity`;
+    this.getJSON(url)
+      .then(data => {
+        let nietLegeWeken = data.filter(w => {
+          return w["total"] >= 1;
+        });
+        return nietLegeWeken;
+      })
+      .catch(console.log);
   }
 
-
+  /**
+   *
+   * @deprecated
+   * @memberof DataService
+   */
   fetchData() {
-
-    //bovenste mag weg
-    this.getJSON(this.reposUrl).then(data => {
-      //Overloop de array, neem de actieve repos (laatste activiteit max 1 week geleden)
-      data = data.filter(data => {
-        return this.compareDates(data["pushed_at"], 7, true);
-      });
-      
-      
-      
-      //Overloop elke actieve repo om de contributorsinfo op te lijsten
-      //this.activeRepo ipv data
-      data.forEach(e => {
-        let contsPerRepoAddress = `https://api.github.com/repos/lab9k/${
-          e.name
-        }/stats/contributors`;
-
-        //TODO: overloop voor elke contributor zijn activiteit van de laatste 5 weken
-        this.getJSON(contsPerRepoAddress, data => {
-          data.forEach(c => {
-            let authorName = c.author.login;
-
-            let weken = c.weeks.filter(data => {
-              return data["c"] >= 1;
-            });
-
-            weken = weken.filter(data => {
-              return this.compareDates(data["w"] * 1000, 35, false);
-            });
-          });
-        });
-      });
-
-
-      //Geef commit activity van de niet-lege weken van het voorbije jaar
-      data.forEach(e => {
-        let commitActivityPerRepo = `https://api.github.com/repos/lab9k/${
-          e.name
-        }/stats/commit_activity`;
-
-        this.getJSON(commitActivityPerRepo, data => {
-          let nietLegeWeken = data.filter(w => {
-            return w["total"] >= 1;
-          });
-          nietLegeWeken.forEach(e => {
-            console.log(e);
-          });
-        });
-      });
-    }).catch(console.log);
+    console.error("fetchData is deprecated");
   }
 }
 
