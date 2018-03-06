@@ -49,11 +49,21 @@ class DataService {
           e.name
         }/stats/contributors`;
 
-        this.getJSON(contsPerRepoAddress, data => {
+         //TODO: overloop voor elke contributor zijn activiteit van de laatste 5 weken
+         this.getJSON(contsPerRepoAddress, data => {
           data.forEach(d => {
-            console.log(d.weeks);
+            let weken = d.weeks;
+
+            
+            console.log("OUDE WEKEN:" + weken.length);
+
+            weken = weken.filter(data => {
+              return this.checkRepoActivity(data["w"], 35);
+            })            
+            
+            console.log("LAATSTE WEKEN:" + weken.length);
           });
-        });
+        })
       });
     });
   }
