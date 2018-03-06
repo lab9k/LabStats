@@ -2,13 +2,27 @@
 
 ## 1. Project 1
 
-### Contributors
+### 1.1.Description
 
-### Commits
+### 1.2.Contributors
+* User 1
+* User 2
+
+
+### 1.3.Commits
+
+| Users         |    Commits    | 
+| ------------- | ------------- |
+| User x        |     10        |
+| User x        |     20        |
+
+### 1.4.Progress
+
+Information about Kanban Board.
 
 
 
-## 2. Project 2
-### Contributors
 
-### Commits
+
+
+
