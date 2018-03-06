@@ -2,7 +2,7 @@
 
 # Lab9k Github report (Insert date range here)
 
-## 1. Project x
+## 1. Project {{projectName}}
 
 ### 1.1.Description
 Insert Project description here
