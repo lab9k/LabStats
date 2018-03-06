@@ -7,9 +7,10 @@ class DataService {
   }
 
   getJSON(address, cb) {
-    console.log(address);
+    address = address + `?client_id=${gh_id}&client_secret=${gh_secret}`;
+    console.log(`Fetching: ${address}`);
     request(
-      address + `?client_id=${gh_id}&client_secret=${gh_secret}`,
+      address,
       {
         json: true,
         headers: {
