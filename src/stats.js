@@ -1,6 +1,7 @@
 const request = require("request");
 const gh_id = process.env.GH_CLIENT_ID;
 const gh_secret = process.env.GH_CLIENT_SECRET;
+
 class DataService {
   /**
    * Creates an instance of DataService.
@@ -76,7 +77,7 @@ class DataService {
       data = data.filter(data => {
         return this.compareDates(data["pushed_at"], 7, true);
       });
-      //TODO: Overloop elke actieve repo om de contributorsinfo op te lijsten
+      //Overloop elke actieve repo om de contributorsinfo op te lijsten
       data.forEach(e => {
         let contsPerRepoAddress = `https://api.github.com/repos/lab9k/${
           e.name
@@ -84,15 +85,32 @@ class DataService {
 
         //TODO: overloop voor elke contributor zijn activiteit van de laatste 5 weken
         this.getJSON(contsPerRepoAddress, data => {
-          data.forEach(d => {
-            let authorName = d.author.login;
+          data.forEach(c => {
+            let authorName = c.author.login;
 
-            let weeksWhereCommitsHappened = d.weeks.filter(data => {
+            let weken = c.weeks.filter(data => {
               return data["c"] >= 1;
             });
-            let weken = weeksWhereCommitsHappened.filter(data => {
+
+            weken = weken.filter(data => {
               return this.compareDates(data["w"] * 1000, 35, false);
             });
+          });
+        });
+      });
+
+      //Geef commit activity van de niet-lege weken van het voorbije jaar
+      data.forEach(e => {
+        let commitActivityPerRepo = `https://api.github.com/repos/lab9k/${
+          e.name
+        }/stats/commit_activity`;
+
+        this.getJSON(commitActivityPerRepo, data => {
+          let nietLegeWeken = data.filter(w => {
+            return w["total"] >= 1;
+          });
+          nietLegeWeken.forEach(e => {
+            console.log(e);
           });
         });
       });
