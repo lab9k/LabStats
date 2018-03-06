@@ -1,6 +1,15 @@
+const DataService = require("./stats");
 var fs = require("fs");
 
 class BlogPostGenerator {
+  constructor() {
+    this.dataService = new DataService();
+  }
+
+  build() {
+    return this.dataService.build();
+  }
+
   createPost() {
     var template = "";
     //read markdown template as a string. 
@@ -10,6 +19,8 @@ class BlogPostGenerator {
       }
       template = data.toString();
     });
+
+    //this.dataService.fetchData();
     
     //fetch data from stats.js
     //Recognize parameters {{ }} & replace them with values from stats.js
@@ -24,7 +35,6 @@ class BlogPostGenerator {
     }); 
     
   }
-
 }
 
 module.exports = BlogPostGenerator;
