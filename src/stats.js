@@ -77,6 +77,42 @@ class DataService {
     return currentDate < date;
   }
 
+  getContributorsActivity(repoName){
+
+     let contsPerRepoAddress = `https://api.github.com/repos/lab9k/${
+        repoName
+      }/stats/contributors`;    
+
+      /*Overloop voor elke contributor zijn activiteit van de laatste 5 weken*/
+
+      this.getJSON(contsPerRepoAddress).then(data => {
+
+        let res = [];
+        data.forEach(c => {
+          let authorName = c.author.login;
+
+          let weken = c.weeks.filter(data => {
+            return data["c"] >= 1;
+          });
+
+          weken = weken.filter(data => {
+            return this.compareDates(data["w"] * 1000, 35, false);
+          });
+
+          c.weeks = weken;
+          res.push(c);
+        });
+        return res;
+
+      }).catch(console.log);   
+  }
+
+
+  getCommitActivity(){
+
+  }
+
+
   fetchData() {
 
     //bovenste mag weg
@@ -85,6 +121,9 @@ class DataService {
       data = data.filter(data => {
         return this.compareDates(data["pushed_at"], 7, true);
       });
+      
+      
+      
       //Overloop elke actieve repo om de contributorsinfo op te lijsten
       //this.activeRepo ipv data
       data.forEach(e => {
@@ -107,6 +146,7 @@ class DataService {
           });
         });
       });
+
 
       //Geef commit activity van de niet-lege weken van het voorbije jaar
       data.forEach(e => {
