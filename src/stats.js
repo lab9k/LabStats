@@ -53,14 +53,18 @@ class DataService {
         this.getJSON(contsPerRepoAddress, data => {
           data.forEach(d => {
             let weken = d.weeks;
+            let author = d.author.login;
 
-            console.log(`OUDE WEKEN voor ${e.name}:` + weken.length);
-
+            console.log(
+              `${author} commits: OUDE WEKEN voor ${e.name}:` + weken.length
+            );
             weken = weken.filter(data => {
               return this.compareDates(data["w"], 35);
             });
 
-            console.log(`NIEUWE WEKEN voor ${e.name}:` + weken.length);
+            console.log(
+              `${author} commits: NIEUWE WEKEN voor ${e.name}:` + weken.length
+            );
           });
         });
       });
