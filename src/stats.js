@@ -53,28 +53,16 @@ class DataService {
         //TODO: overloop voor elke contributor zijn activiteit van de laatste 5 weken
         this.getJSON(contsPerRepoAddress, data => {
           data.forEach(d => {
-<<<<<<< HEAD
-            let weken = d.weeks;
-            let author = d.author.login;
-=======
-            let authorName = d.author.login;
->>>>>>> cce7f3d88d84c5468bc47f57908f7d19330f475c
 
-            weken = weken.filter(data => {
+            let authorName = d.author.login;
+
+            let weken = d.weeks.filter(data => {
               return data["c"] >= 1;
             });
-            console.log(
-              `${author} commits: OUDE WEKEN voor ${e.name}:` + weken.length
-            );
-
+            
             weken = weken.filter(data => {
-              let date = data["w"];
-              let currentDate = new Date().getTime() - 35 * 24 * 60 * 60 * 1000;
-              let result = this.compareDates(data["w"], 35, false);
-              console.log(
-                `Date: ${date} , currentDate: ${currentDate} , result: ${result}`
-              );
-              return this.compareDates(data["w"], 35, false);
+                            
+              return this.compareDates(data["w"] * 1000, 35, false);
             });
 
             console.log(
