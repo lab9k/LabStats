@@ -1,9 +1,13 @@
-# Lab9k Github report (date)
+<img src="https://lab9k.github.io/images/logo.svg" width="170">
 
-## 1. Project 1
+# Lab9k Github report (Insert date range here)
+
+## 1. Project x
 
 ### 1.1.Description
-Generated Project description
+Insert Project description here
+
+See the project on [github](https://github.com/lab9k/lab9k.github.io)
 
 ### 1.2.Contributors
 All the people that contributed to this project.
@@ -11,11 +15,8 @@ All the people that contributed to this project.
 * [User 1](https://github.com/rubenalliet)
 * [User 2](https://github.com/rubenalliet)
 
-
-
-
 ### 1.3.Commits
-This graph shows the amount of commits done by each user for Project 1.
+This graph shows the amount of commits done by each user for Project x.
 
 | Users                                    |        Commits          | 
 | -----------------------------------------| ----------------------- |
@@ -35,10 +36,6 @@ To get a complete overview click [here](https://github.com/lab9k/Skos/projects/1
            
 
 
-Information about Kanban Board.
-
-- [ ] An uncompleted task
-- [x] A completed task
 
 
 
