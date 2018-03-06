@@ -27,14 +27,12 @@ class DataService {
     );
   }
 
-  checkRepoActivity(repo) {
-    let date = repo["pushed_at"];
-
+  compareDates(date, maxDaysAgo) {
     //console.log(date);
 
     date = Date.parse(date);
 
-    let currentDate = new Date().getTime() - 7 * 24 * 60 * 60 * 1000;
+    let currentDate = new Date().getTime() - maxDaysAgo * 24 * 60 * 60 * 1000;
     //return false;
     return currentDate < date;
   }
@@ -42,18 +40,32 @@ class DataService {
   fetchData() {
     this.getJSON(this.reposUrl, data => {
       //Overloop de array, neem de actieve repos (laatste activiteit max 1 week geleden)
-      data = data.filter(this.checkRepoActivity);
+      data = data.filter(data => {
+        return this.compareDates(data["pushed_at"], 7);
+      });
       //TODO: Overloop elke actieve repo om de contributorsinfo op te lijsten
       data.forEach(e => {
         let contsPerRepoAddress = `https://api.github.com/repos/lab9k/${
           e.name
         }/stats/contributors`;
 
+        //TODO: overloop voor elke contributor zijn activiteit van de laatste 5 weken
         this.getJSON(contsPerRepoAddress, data => {
-          /*data.forEach(e => {
-                   console.log(e);
-                 })*/
-          //console.log(JSON.parse(JSON.stringify(data)));
+          data.forEach(d => {
+            let weken = d.weeks;
+            let author = d.author.login;
+
+            console.log(
+              `${author} commits: OUDE WEKEN voor ${e.name}:` + weken.length
+            );
+            weken = weken.filter(data => {
+              return this.compareDates(data["w"], 35);
+            });
+
+            console.log(
+              `${author} commits: NIEUWE WEKEN voor ${e.name}:` + weken.length
+            );
+          });
         });
       });
     });
