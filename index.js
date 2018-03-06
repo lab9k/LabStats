@@ -16,5 +16,6 @@ g
   .build()
   .then(() => {
     console.log("Repositories are now accessible, generator can proceed.");
+    g.createPost();
   })
   .catch(console.log);
