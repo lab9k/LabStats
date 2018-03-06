@@ -53,18 +53,47 @@ class DataService {
         //TODO: overloop voor elke contributor zijn activiteit van de laatste 5 weken
         this.getJSON(contsPerRepoAddress, data => {
           data.forEach(d => {
-            let author = d.author.login;
 
-            let weeksWhereCommitsHappened = d.weeks.filter(data => {
+            let authorName = d.author.login;
+
+            let weken = d.weeks.filter(data => {
               return data["c"] >= 1;
             });
-            let weken = weeksWhereCommitsHappened.filter(data => {
+            
+            weken = weken.filter(data => {
+                            
               return this.compareDates(data["w"] * 1000, 35, false);
             });
+
+            console.log(
+              `${author} commits: NIEUWE WEKEN voor ${e.name}:` + weken.length
+            );
           });
         });
       });
-    });
+
+      console.log("========================================================================================")
+
+      //TODO: geef commit activity van de betreffende weken van het voorbije jaar 
+      data.forEach(e => {
+        let commitActivity = `https://api.github.com/repos/lab9k/${
+          e.name
+        }/stats/commit_activity`;
+
+
+        this.getJSON(commitActivity, data => {
+
+          console.log("========================================================================================")
+          console.log(e.name)
+          console.log("========================================================================================")
+
+          data.forEach(ca => {
+            console.log(ca);
+          })
+        })
+
+      });      
+    })
   }
 }
 
