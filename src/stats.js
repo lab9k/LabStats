@@ -55,9 +55,13 @@ class DataService {
             let weken = d.weeks;
             let author = d.author.login;
 
+            weken = weken.filter(data => {
+              return data["c"] >= 1;
+            });
             console.log(
               `${author} commits: OUDE WEKEN voor ${e.name}:` + weken.length
             );
+
             weken = weken.filter(data => {
               return this.compareDates(data["w"], 35);
             });
