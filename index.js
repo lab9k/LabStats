@@ -22,6 +22,9 @@ g
   .catch(console.log);
 
 
+<<<<<<< HEAD
   //testing/logging getContrActivity && getCommitActivity
 
+=======
+>>>>>>> 380d9b7c80953bc60c279fb91a1e747261be9f72
 

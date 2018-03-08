@@ -60,13 +60,6 @@ class BlogPostGenerator {
       });
     });
 
-    //this.dataService.fetchData();
-
-    //fetch data from stats.js
-    //Recognize parameters {{ }} & replace them with values from stats.js
-    //template.replace(regexp|substr, newSubstr|function);
-
-    //Store String as a markdown file.
   }
 }
 
