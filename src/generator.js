@@ -9,7 +9,6 @@ class BlogPostGenerator {
 
    //krijg gegevens van stats.js
   getStats(repo){
-
     return new Promise((resolve,reject) => {
       this.dataService.getContributorsActivity(repo).then(contributors => { 
         return contributors;
@@ -54,7 +53,7 @@ class BlogPostGenerator {
       };
       let output = Mustache.render(template, json);
 
-      fs.writeFile("templates/testreport.md", output, err => {
+      fs.writeFile("templates/generated_report.md", output, err => {
         if (err) {
           return console.log(err);
         }

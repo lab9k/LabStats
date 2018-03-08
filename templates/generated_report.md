@@ -12,20 +12,5 @@ Active repositories of last week:
 * [LabStats](https:&#x2F;&#x2F;github.com&#x2F;lab9k&#x2F;LabStats)
 * [score](https:&#x2F;&#x2F;github.com&#x2F;lab9k&#x2F;score)
 
-# 1.Contributors
 
-All the people that contributed to this project.
-
-
-* [User 1](https://github.com/rubenalliet)
-
-### 1.3.Commits
-
-This graph shows the amount of commits done by each user for Project x.
-
-| Projects                                 | Commits     |
-| ---------------------------------------- | ----------- |
-
-
-To get a complete overview click [here]()
 
