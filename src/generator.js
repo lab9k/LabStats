@@ -16,7 +16,8 @@ class BlogPostGenerator {
         
       }).then(contributors => {      
         this.dataService.getCommitActivity(repo).then(commits => {
-          resolve({contributors,commits})
+          let name = repo;
+          resolve({name,contributors,commits})
         });
           
       }).catch(reject);
@@ -30,14 +31,17 @@ class BlogPostGenerator {
   createPost() {
     var template = "";
     var active_repos = [];
+    var repos_and_commits = [];
 
     this.dataService.activeRepos.forEach(repo => {
       active_repos.push(repo);
     });
 
-    this.getStats.getCommitActivity
+    this.getStats("Skos").then(console.log).catch(console.log);
 
-    console.log(active_repos);
+    
+
+    //console.log(active_repos);
     
     //read markdown template as a string.
     fs.readFile("templates/template.md", function(err, data) {

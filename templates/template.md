@@ -4,9 +4,9 @@
 
 # 1.Active repositories
 Active repositories of last week:
-{{#repo.active_repos}} 
+{{#active_repos}} 
 * [{{ name }}]({{ html_url }})
-{{/repo.active_repos}}
+{{/active_repos}}
 
 # 1.Contributors
 
