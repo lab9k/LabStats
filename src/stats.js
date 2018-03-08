@@ -16,7 +16,6 @@ class DataService {
 
   /**
    *
-   *
    * @returns Promise
    * @memberof DataService
    */
