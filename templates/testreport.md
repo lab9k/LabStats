@@ -6,6 +6,10 @@
 
 ### 1.1.Description
 
+
+
+
+
 Skosmos project with the great vocbench software...
 
 See the project on [github]()
@@ -14,8 +18,6 @@ See the project on [github]()
 
 All the people that contributed to this project.
 
-Jef
-Ian
 
 * [User 1](https://github.com/rubenalliet)
 

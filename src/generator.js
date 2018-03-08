@@ -30,6 +30,11 @@ class BlogPostGenerator {
   createPost() {
     this.getStats().then((statistics) => {
       var template = "";
+
+      /* this.dataService.activeRepos.forEach(name => {
+
+      }); */
+      
       //read markdown template as a string.
       fs.readFile("templates/template.md", function (err, data) {
         if (err) {
@@ -40,7 +45,7 @@ class BlogPostGenerator {
           repo: {
             name: "Skos",
             description: "Skosmos project with the great vocbench software...",
-            contributors: [{ name: "Jef" }, { name: "Ian" }],
+            active_repos: "test",
             commits: 30,
             commits_overview_url: "www.google.com"
           },
@@ -61,10 +66,9 @@ class BlogPostGenerator {
         });
       });
       console.log("relax chil");
-      console.log(statistics);
+      console.log(this.dataService.activeRepos);
     })
     .catch(console.log);
-
   }
 }
 
