@@ -23,8 +23,8 @@ class DataService {
   build() {
     let reposUrl = "https://api.github.com/orgs/lab9k/repos";
     return new Promise((resolve, reject) => {
-      try {
-        this.getJSON(reposUrl, data => {
+      this.getJSON(reposUrl)
+        .then(data => {
           data = data.filter(data => {
             return this.compareDates(data["pushed_at"], 7, true);
           });
@@ -32,10 +32,8 @@ class DataService {
             this.activeRepos.push(repo);
           });
           resolve(data);
-        });
-      } catch (error) {
-        reject(error);
-      }
+        })
+        .catch(reject);
     });
   }
 

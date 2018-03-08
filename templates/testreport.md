@@ -1,22 +1,21 @@
 <img src="https://lab9k.github.io/images/logo.svg" width="170">
 
-# Lab9k Github report {{ report.date }}
+# Lab9k Github report 4&#x2F;2&#x2F;2018
 
-## 1. Project {{ repo.name }}
+## 1. Project Skos
 
 ### 1.1.Description
 
-{{ repo.description }}
+Skosmos project with the great vocbench software...
 
-See the project on [github]({{ repo.url }})
+See the project on [github]()
 
 ### 1.2.Contributors
 
 All the people that contributed to this project.
 
-{{#repo.contributors}}
-{{name}}
-{{/repo.contributors}}
+Jef
+Ian
 
 * [User 1](https://github.com/rubenalliet)
 
@@ -29,9 +28,9 @@ This graph shows the amount of commits done by each user for Project x.
 | [User 1](https://github.com/rubenalliet) | 10      |
 | [User 1](https://github.com/rubenalliet) | 20      |
 
-{{ repo.commits }}
+30
 
-To get a complete overview click [here]({{ repo.commits_overview_url }})
+To get a complete overview click [here](www.google.com)
 
 ### 1.4.Kanban Board | Progress
 
