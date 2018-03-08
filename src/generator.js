@@ -8,14 +8,14 @@ class BlogPostGenerator {
   }
 
    //krijg gegevens van stats.js
-  getStats(){
+  getStats(repo){
 
     return new Promise((resolve,reject) => {
-      this.dataService.getContributorsActivity("Skos").then(contributors => { 
+      this.dataService.getContributorsActivity(repo).then(contributors => { 
         return contributors;
         
       }).then(contributors => {      
-        this.dataService.getCommitActivity("Skos").then(commits => {
+        this.dataService.getCommitActivity(repo).then(commits => {
           resolve({contributors,commits})
         });
           
@@ -35,6 +35,7 @@ class BlogPostGenerator {
       active_repos.push(repo);
     });
 
+    this.getStats.getCommitActivity
 
     console.log(active_repos);
     
@@ -48,11 +49,11 @@ class BlogPostGenerator {
         repo: {
           name: "Skos",
           description: "Skosmos project with the great vocbench software...",
-          contributors: [{ name: "Jef" }, { name: "Ian" }],
-          active_repos: active_repos, 
+          contributors: "testfase",
           commits: 30,
           commits_overview_url: "www.google.com"
         },
+        active_repos: active_repos, 
         report: {
           date: function() {
             let d = new Date();

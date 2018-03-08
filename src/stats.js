@@ -94,7 +94,6 @@ class DataService {
       .catch(reject);
     })    
   }
-
   /**
    *
    *
