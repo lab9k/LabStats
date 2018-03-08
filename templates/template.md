@@ -2,17 +2,12 @@
 
 # Lab9k Github report {{ report.date }}
 
-## 1. Project {{ repo.name }}
-
-### 1.1.Description
-
-{{#repo.active_repos}}
-{{name}}
+# 1.1.Active repositories
+Active repositories of last week:
+{{#repo.active_repos}} 
+* [{{ name }}]({{ html_url }})
 {{/repo.active_repos}}
 
-
-
-{{ repo.description }}
 
 See the project on [github]({{ repo.url }})
 

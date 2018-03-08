@@ -12,7 +12,7 @@ gitCommitPush({
     files: [
         // path is the path of the git repo
         // content is the current content on disk
-        { path: "_posts/testreport.md", content: fs.readFileSync(__dirname + "../templates/testreport.md", "utf-8") }
+        { path: "_posts/AR-testreport.md", content: fs.readFileSync(__dirname + "../templates/AR-template.md", "utf-8") }
     ],
     fullyQualifiedRef: "heads/master",
     forceUpdate: false, // optional default = false

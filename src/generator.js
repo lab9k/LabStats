@@ -34,8 +34,10 @@ class BlogPostGenerator {
     this.dataService.activeRepos.forEach(repo => {
       active_repos.push(repo);
     });
-    
 
+
+    console.log(active_repos);
+    
     //read markdown template as a string.
     fs.readFile("templates/template.md", function(err, data) {
       if (err) {

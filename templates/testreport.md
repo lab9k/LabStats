@@ -6,15 +6,13 @@
 
 ### 1.1.Description
 
-lab9k.github.io
-Orga
-Skos
-Beacons
-AndroidAuthenticator
-LabStats
-score
-
-
+* [lab9k.github.io](https:&#x2F;&#x2F;github.com&#x2F;lab9k&#x2F;lab9k.github.io)
+* [Orga](https:&#x2F;&#x2F;github.com&#x2F;lab9k&#x2F;Orga)
+* [Skos](https:&#x2F;&#x2F;github.com&#x2F;lab9k&#x2F;Skos)
+* [Beacons](https:&#x2F;&#x2F;github.com&#x2F;lab9k&#x2F;Beacons)
+* [AndroidAuthenticator](https:&#x2F;&#x2F;github.com&#x2F;lab9k&#x2F;AndroidAuthenticator)
+* [LabStats](https:&#x2F;&#x2F;github.com&#x2F;lab9k&#x2F;LabStats)
+* [score](https:&#x2F;&#x2F;github.com&#x2F;lab9k&#x2F;score)
 
 Skosmos project with the great vocbench software...
 
