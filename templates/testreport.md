@@ -17,7 +17,6 @@ Active repositories of last week:
 All the people that contributed to this project.
 
 
-
 * [User 1](https://github.com/rubenalliet)
 
 ### 1.3.Commits
@@ -28,5 +27,5 @@ This graph shows the amount of commits done by each user for Project x.
 | ---------------------------------------- | ----------- |
 
 
-To get a complete overview click [here](www.google.com)
+To get a complete overview click [here]()
 

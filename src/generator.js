@@ -36,12 +36,6 @@ class BlogPostGenerator {
     this.dataService.activeRepos.forEach(repo => {
       active_repos.push(repo);
     });
-
-    this.getStats("Skos").then(console.log).catch(console.log);
-
-    
-
-    //console.log(active_repos);
     
     //read markdown template as a string.
     fs.readFile("templates/template.md", function(err, data) {
@@ -50,13 +44,6 @@ class BlogPostGenerator {
       }
       template = data.toString();
       let json = {
-        repo: {
-          name: "Skos",
-          description: "Skosmos project with the great vocbench software...",
-          contributors: "testfase",
-          commits: 30,
-          commits_overview_url: "www.google.com"
-        },
         active_repos: active_repos, 
         report: {
           date: function() {
