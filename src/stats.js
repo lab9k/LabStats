@@ -100,8 +100,8 @@ class DataService {
    *
    * @memberof DataService
    */
-  getCommitActivity(name) {
-    let url = `https://api.github.com/repos/lab9k/${name}/stats/commit_activity`;
+  getCommitActivity(repoName) {
+    let url = `https://api.github.com/repos/lab9k/${repoName}/stats/commit_activity`;
     
     return new Promise((resolve, reject) => {
       this.getJSON(url)
