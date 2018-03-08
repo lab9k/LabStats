@@ -1,4 +1,4 @@
-/* const fs = require("fs");
+const fs = require("fs");
 const { gitCommitPush } = require("git-commit-push-via-github-api");
 process.on("unhandledRejection", console.dir);
 if (!process.env.GITHUB_API_TOKEN) {
@@ -23,4 +23,4 @@ gitCommitPush({
     })
     .catch(err => {
         console.error(err);
-    }); */
+    });
