@@ -74,10 +74,10 @@ class DataService {
 
   getContributorsActivity(repoName) {
     let contsPerRepoAddress = `https://api.github.com/repos/lab9k/${repoName}/stats/contributors`;
-
     /*Overloop voor elke contributor zijn activiteit van de laatste 5 weken*/
 
-    this.getJSON(contsPerRepoAddress)
+    return new Promise((resolve, reject) => {
+      this.getJSON(contsPerRepoAddress)
       .then(data => {
         let res = [];
         data.forEach(c => {
@@ -90,9 +90,10 @@ class DataService {
           c.weeks = weken;
           res.push(c);
         });
-        return res;
+        resolve(res);
       })
-      .catch(console.log);
+      .catch(reject);
+    })    
   }
 
   /**
@@ -102,14 +103,17 @@ class DataService {
    */
   getCommitActivity(name) {
     let url = `https://api.github.com/repos/lab9k/${name}/stats/commit_activity`;
-    this.getJSON(url)
+    
+    return new Promise((resolve, reject) => {
+      this.getJSON(url)
       .then(data => {
         let nietLegeWeken = data.filter(w => {
           return w["total"] >= 1;
         });
-        return nietLegeWeken;
+        resolve(nietLegeWeken);
       })
-      .catch(console.log);
+      .catch(reject);
+    })    
   }
 
   /**

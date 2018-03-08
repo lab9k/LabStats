@@ -4,8 +4,24 @@ const Mustache = require("mustache");
 
 class BlogPostGenerator {
   constructor() {
-    this.dataService = new DataService();
+    this.dataService = new DataService();   
   }
+
+   //krijg gegevens van stats.js
+  getStats(){
+
+    return new Promise((resolve,reject) => {
+      this.dataService.getContributorsActivity("Skos").then(contributors => { 
+        return contributors;
+        
+      }).then(contributors => {      
+        this.dataService.getCommitActivity("Skos").then(commits => {
+          resolve({contributors,commits})
+        });
+          
+      }).catch(reject);
+    })   
+  }  
 
   build() {
     return this.dataService.build();

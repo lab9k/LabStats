@@ -17,5 +17,11 @@ g
   .then(() => {
     console.log("Repositories are now accessible, generator can proceed.");
     g.createPost();
+    g.testLoggingActivity();
   })
   .catch(console.log);
+
+
+  //testing/logging getContrActivity && getCommitActivity
+
+
