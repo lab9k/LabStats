@@ -17,4 +17,4 @@ Dit project is volledig in JavaScript geschreven. Er zijn twee .js bestanden aan
 
 ## Het resultaat
 
-Het doel was initieel om de data die opgevraagd werd van GitHub te gebruiken bij de automatische generatie van een wekelijkse blogpost op [de website van Lab9K](https://lab9k.github.io/). Dit met de bedoeling dat iedereen die betrokken is bij Lab9K een overzicht heeft van wat er wanneer en door wie gerealiseerd werd.  
+Het doel was initieel om de data die opgevraagd werd van GitHub te gebruiken bij de automatische generatie van een wekelijkse blogpost op [de website van Lab9K](https://lab9k.github.io/). Dit met de bedoeling dat iedereen die betrokken is bij Lab9K een overzicht heeft van wat er wanneer en door wie gerealiseerd werd. Helaas zijn we er (nog) niet in geslaagd om via een POST request in JavaScript een git commit te doen naar de repository van de website waardoor het automatisch genereren van een blogpot (nog) niet mogelijk is.
