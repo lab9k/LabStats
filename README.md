@@ -1,6 +1,6 @@
 # LabStats
 
-## Inhoud van deze tool
+## Inhoud 
 
 Deze tool draagt bij tot het verbeteren van het project management binnen Lab9K. LabStats is een project waarbij we getracht hebben om zoveel mogelijk belangrijke data op te halen van de organisatie met betrekking tot de gebruikersactiviteit, voornamelijk de commit- en contributorsactiviteit binnen een project. Dat werd gerealiseerd door queries te schrijven die de gewenste data d.m.v. de GitHub API kan ophalen. 
 
