@@ -20,8 +20,9 @@ class DataService {
    * @memberof DataService
    */
   build() {
-    let reposUrl = "https://api.github.com/orgs/lab9k/repos";
-    return new Promise((resolve, reject) => {
+      
+      let reposUrl = "https://api.github.com/orgs/lab9k/repos";
+      return new Promise((resolve, reject) => {
       this.getJSON(reposUrl)
         .then(data => {
           data = data.filter(data => {
@@ -34,7 +35,9 @@ class DataService {
         })
         .catch(reject);
     });
+
   }
+
 
   getJSON(address) {
     address = address + `?client_id=${gh_id}&client_secret=${gh_secret}`;

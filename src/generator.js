@@ -9,6 +9,7 @@ class BlogPostGenerator {
 
   //krijg gegevens van stats.js
   getStats() {
+    
     let actives = this.dataService.activeRepos;
     let actives_promises_commit_activity = [];
     let actives_promises_contributors = [];

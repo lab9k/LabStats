@@ -11,14 +11,22 @@ if (result.error) {
 }
 
 const Generator = require("./src/generator");
-let g = new Generator();
-g
-  .build()
-  .then(() => {
-    console.log("Repositories are now accessible, generator can proceed.");
-    //g.createPost();
-    g.getStats();
-  })
-  .catch(console.log);
+
+var init = function() {
+  let g = new Generator();
+  g
+    .build()
+    .then(() => {
+      console.log("Repositories are now accessible, generator can proceed.");
+      g.createPost();
+      //g.getStats();
+    })
+    .catch(() => {
+      console.log("fetching data failed... Trying again...");
+      init();
+    });
+};
+
+init();
 
 //testing/logging getContrActivity && getCommitActivity
