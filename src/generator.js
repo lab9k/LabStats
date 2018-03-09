@@ -28,6 +28,7 @@ class BlogPostGenerator {
           Promise.all(actives_promises_contributors)
             .then(contrib_data => {
               let ret = Object.create({});
+              ret.repos = [];
               actives.forEach(repo => {
                 let commit_data_obj = commit_data.find(
                   el => el.repo === repo.name
@@ -47,11 +48,12 @@ class BlogPostGenerator {
                     el2["w"] = d.toISOString();
                   });
                 });
-
-                ret[repo.name] = {
+                let r = {
+                  name: repo.name,
                   commit_data: commit_data_obj,
                   contrib_data: contrib_data_obj
                 };
+                ret.repos.push(r);
               });
               fs.writeFile(
                 "test/test.json",
