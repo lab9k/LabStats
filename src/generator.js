@@ -8,13 +8,13 @@ class BlogPostGenerator {
   }
 
    //krijg gegevens van stats.js
-  getStats(repo){
+  getStats(){
     return new Promise((resolve,reject) => {
-      this.dataService.getContributorsActivity(repo).then(contributors => { 
+      this.dataService.getContributorsActivity().then(contributors => { 
         return contributors;
         
       }).then(contributors => {      
-        this.dataService.getCommitActivity(repo).then(commits => {
+        this.dataService.getCommitActivity().then(commits => {
           let name = repo;
           resolve({name,contributors,commits})
         });
