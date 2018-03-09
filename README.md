@@ -29,11 +29,12 @@ Helaas zijn we er (nog) niet in geslaagd om via een POST request in JavaScript e
 ## Hoe gebruiken
 
 1. Controleer zeker dat de `templates` dir bestaat in de root van het project & dat er een `template.md` file aanwezig is.
-2. Voer onderstaand commando uit in de terminal:
+2. Ga via de terminal naar de root van het project.
+3. Voer onderstaand commando uit in de terminal:
 ```
 node index.js
 ```
-3. Er is nu een `generated_report.md` file aanwezig die de gebruikersgegevens van de actieve repositories van de laatste week heeft gegenereerd.
+4. Er is nu een `generated_report.md` file aanwezig die de gebruikersgegevens van de actieve repositories van de laatste week heeft gegenereerd.
 
 
 
