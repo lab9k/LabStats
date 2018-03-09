@@ -77,22 +77,22 @@ class DataService {
 
     return new Promise((resolve, reject) => {
       this.getJSON(contsPerRepoAddress)
-      .then(data => {
-        let res = [];
-        data.forEach(c => {
-          let weken = c.weeks.filter(data => {
-            return data["c"] >= 1;
+        .then(data => {
+          let res = [];
+          data.forEach(c => {
+            let weken = c.weeks.filter(data => {
+              return data["c"] >= 1;
+            });
+            weken = weken.filter(data => {
+              return this.compareDates(data["w"] * 1000, 35, false);
+            });
+            c.weeks = weken;
+            res.push(c);
           });
-          weken = weken.filter(data => {
-            return this.compareDates(data["w"] * 1000, 35, false);
-          });
-          c.weeks = weken;
-          res.push(c);
-        });
-        resolve(res);
-      })
-      .catch(reject);
-    })    
+          resolve({ repo: repoName, data: res });
+        })
+        .catch(reject);
+    });
   }
   /**
    *
@@ -101,17 +101,17 @@ class DataService {
    */
   getCommitActivity(repoName) {
     let url = `https://api.github.com/repos/lab9k/${repoName}/stats/commit_activity`;
-    
+
     return new Promise((resolve, reject) => {
       this.getJSON(url)
-      .then(data => {
-        let nietLegeWeken = data.filter(w => {
-          return w["total"] >= 1;
-        });
-        resolve(nietLegeWeken);
-      })
-      .catch(reject);
-    })    
+        .then(data => {
+          let nietLegeWeken = data.filter(w => {
+            return w["total"] >= 1;
+          });
+          resolve({ repo: repoName, data: nietLegeWeken });
+        })
+        .catch(reject);
+    });
   }
 
   /**
