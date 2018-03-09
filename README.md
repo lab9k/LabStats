@@ -12,7 +12,7 @@ De overige bestanden werden volledig in JavaScript geschreven. Er zijn drie .js 
 * **generator.js**: verantwoordelijk voor het doorgeven van de juiste gegevens aan `template.md` en het opbouwen van de blogpost.
 * **index.js**: een soort constructor script die de build uitvoert van de generator klasse, de gegevens ophaalt & de blogpost creëert.
 
-Een ander belangrijk (struikel)punt was de geauthoriseerde connectie maken met GitHub via een HTTP request. Dat moet gebeuren via een Client ID en een Client Token, gegenereerd voor onze GitHub organisatie, die in het `.env` bestand gespecifiëert zijn. 
+Een ander belangrijk (struikel)punt was de geauthoriseerde connectie maken met GitHub via een HTTP request. Dat moet gebeuren via een Client ID en een Client Token, gegenereerd voor onze GitHub organisatie, die in het `.env` bestand gespecifiëerd zijn. 
 
 
 ## Het (voorlopige) resultaat
