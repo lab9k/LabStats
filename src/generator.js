@@ -9,10 +9,10 @@ class BlogPostGenerator {
 
   //krijg gegevens van stats.js
   getStats() {
-    
     let actives = this.dataService.activeRepos;
     let actives_promises_commit_activity = [];
     let actives_promises_contributors = [];
+
     actives.forEach(repo => {
       let repoPromise_ca = this.dataService.getCommitActivity(repo.name);
       actives_promises_commit_activity.push(repoPromise_ca);
@@ -56,18 +56,9 @@ class BlogPostGenerator {
                 };
                 ret.repos.push(r);
               });
-              fs.writeFile(
-                "test/test.json",
-                JSON.stringify(ret),
-                "utf8",
-                err => {
-                  if (err) {
-                    return console.log(err);
-                  }
-                  resolve(ret);
-                  console.log("The file was saved!");
-                }
-              );
+
+              resolve(ret);
+              console.log("The file was saved!");
             })
             .catch(console.error);
         })

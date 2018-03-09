@@ -2,7 +2,7 @@
 
 # Lab9k Github report {{{ report.date }}}
 
-# 1.Active repositories
+# 1. Active repositories
 
 Active repositories of last week:
 {{#active_repos}} 
