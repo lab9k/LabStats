@@ -89,8 +89,7 @@ class BlogPostGenerator {
         active_repos: active_repos,
         report: {
           date: function() {
-            let d = new Date();
-            return `${d.getDay()}/${d.getMonth()}/${d.getFullYear()}`;
+            return new Date().toISOString();
           }
         }
       };
