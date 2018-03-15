@@ -49,15 +49,17 @@ class BlogPostGenerator {
                     el2["w"] = d.toISOString();
                   });
                 });
-                let r = {
-                  repo_data: repo,
-                  commit_data: commit_data_obj,
-                  contrib_data: contrib_data_obj
-                };
-                ret.repos.push(r);
+                if (commit_data_obj.length !== 0) {
+                  let r = {
+                    repo_data: repo,
+                    commit_data: commit_data_obj,
+                    contrib_data: contrib_data_obj
+                  };
+                  ret.repos.push(r);
+                }
               });
               resolve(ret);
-              fs.writeFileSync("test/test.json", JSON.stringify(ret)); 
+              fs.writeFileSync("test/test.json", JSON.stringify(ret));
             })
             .catch(console.error);
         })
