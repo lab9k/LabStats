@@ -57,6 +57,7 @@ class BlogPostGenerator {
                 ret.repos.push(r);
               });
               resolve(ret);
+              fs.writeFileSync("test/test.json", JSON.stringify(ret)); 
             })
             .catch(console.error);
         })

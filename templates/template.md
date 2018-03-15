@@ -4,11 +4,18 @@
 
 # 1. Active repositories
 
-**Active repositories of the previous week:**
+{{#report.stats.repos}} 
+## [{{{ repo_data.name }}}]({{{ repo_data.html_url }}})
 
-{{#active_repos}} 
-* [{{ name }}]({{{ html_url }}})
-{{/active_repos}}
+* Laatste commit op : {{{ repo_data.updated_at }}} 
+    
+* **Commit Activity:**
+    {{#commit_data}}
+    * Totaal aantal commits deze week: {{{ total }}}
+    {{/commit_data}}
+
+{{/report.stats.repos}}
+
 
 
 

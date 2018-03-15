@@ -84,7 +84,7 @@ class DataService {
               return data["c"] >= 1;
             });
             weken = weken.filter(data => {
-              return this.compareDates(data["w"] * 1000, 35, false);
+              return this.compareDates(data["w"] * 1000, 7, false);
             });
             c.weeks = weken;
             res.push(c);
@@ -107,6 +107,9 @@ class DataService {
         .then(data => {
           let nietLegeWeken = data.filter(w => {
             return w["total"] >= 1;
+          });
+          nietLegeWeken = nietLegeWeken.filter(data => {
+            return this.compareDates(data["week"] * 1000, 7, false);
           });
           resolve({ repo: repoName, data: nietLegeWeken });
         })

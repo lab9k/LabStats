@@ -18,8 +18,8 @@ var init = function() {
     .build()
     .then(() => {
       console.log("Repositories are now accessible, generator can proceed.");
-      g.createPost();
-      //g.getStats();
+      //g.createPost();
+      g.getStats();
     })
     .catch(() => {
       console.log("fetching data failed... Trying again...");
