@@ -50,15 +50,13 @@ class BlogPostGenerator {
                   });
                 });
                 let r = {
-                  name: repo.name,
+                  repo_data: repo,
                   commit_data: commit_data_obj,
                   contrib_data: contrib_data_obj
                 };
                 ret.repos.push(r);
               });
-
               resolve(ret);
-              console.log("The file was saved!");
             })
             .catch(console.error);
         })
