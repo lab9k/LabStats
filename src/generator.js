@@ -75,37 +75,41 @@ class BlogPostGenerator {
     var active_repos = [];
     var repos_and_commits = [];
 
-    this.dataService.activeRepos.forEach(repo => {
+    /*this.dataService.activeRepos.forEach(repo => {
       active_repos.push(repo);
-    });
+    });*/
 
-    //read markdown template as a string.
-    fs.readFile("templates/template.md", function(err, data) {
-      if (err) {
-        return console.log(err);
-      }
-      template = data.toString();
-      let json = {
-        active_repos: active_repos,
-        report: {
-          date: function() {
-            var dateObj = new Date();
-            var month = dateObj.getUTCMonth() + 1;
-            var day = dateObj.getUTCDate();
-            var year = dateObj.getUTCFullYear();            
-            var newdate = `${day}/${month}/${year}`;
-
-            return newdate;
-          }
-        }
-      };
-      let output = Mustache.render(template, json);
-
-      fs.writeFile("templates/generated_report.md", output, err => {
+    this.getStats().then(ghjson => {
+      //read markdown template as a string.
+      fs.readFile("templates/template.md", function(err, data) {
         if (err) {
           return console.log(err);
         }
-        console.log("The file was saved!");
+
+        template = data.toString();
+        let json = {
+          report: {
+            date: function() {
+              var dateObj = new Date();
+              var month = dateObj.getUTCMonth() + 1;
+              var day = dateObj.getUTCDate();
+              var year = dateObj.getUTCFullYear();
+              var newdate = `${day}/${month}/${year}`;
+
+              return newdate;
+            },
+            stats: ghjson
+          }
+        };
+
+        let output = Mustache.render(template, json);
+
+        fs.writeFile("templates/generated_report.md", output, err => {
+          if (err) {
+            return console.log(err);
+          }
+          console.log("The file was saved!");
+        });
       });
     });
   }

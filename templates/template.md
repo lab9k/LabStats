@@ -4,10 +4,15 @@
 
 # 1. Active repositories
 
-Active repositories of last week:
+**Active repositories of the previous week:**
+
 {{#active_repos}} 
 * [{{ name }}]({{{ html_url }}})
 {{/active_repos}}
+
+
+
+
 
 
 

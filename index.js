@@ -28,5 +28,3 @@ var init = function() {
 };
 
 init();
-
-//testing/logging getContrActivity && getCommitActivity
