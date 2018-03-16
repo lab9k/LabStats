@@ -24,7 +24,10 @@ Helaas zijn we er (nog) niet in geslaagd om via een POST request in JavaScript e
 * *Update 08/03/2018:* de actieve repositories worden opgelijst in een .md bestand
 * *Update 09/03/2018:* getStats()-methode retourneert één JSON object `repos` dat meerdere repository-objecten retourneert met de properties `name`,`commit_data` en `contrib_data`. Dit maakt het gemakkelijker om te itereren over de verschillende repositories en de gegevens gemakkelijker te visualiseren en aan te spreken in `template.md`.
 
-* *In Progress:* `template.md` volledig opbouwen om alle contributors- en commit activity te kunnen laten zien per project.
+* *Update 16/03/2018:* `template.md` is volledig opgebouwd:
+  * Alle actieve repo's 
+  * Commit activity per repo
+  * Info over contributors + activity per contributor per repo 
 
 ## Hoe gebruiken
 
@@ -35,6 +38,7 @@ Helaas zijn we er (nog) niet in geslaagd om via een POST request in JavaScript e
 node index.js
 ```
 4. Er is nu een `generated_report.md` file aanwezig die de gebruikersgegevens van de actieve repositories van de laatste week heeft gegenereerd.
+5. **Het kan zijn dat het report nog niet onmiddelijk aangemaakt kan worden! (Momenteel wordt er nog gewerkt aan een oplossing voor een onverwachtse Unhandled PromiseException die gegooid wordt) Als men stap 3 een aantal keer herhaalt, zal dit wel lukken.**
 
 
 
